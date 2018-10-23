@@ -19,3 +19,23 @@ def showPersonalDataL(self, login, haslo):
 
         print("| %8s | %8s | %8s | %10s | %9s | %12s | %10s |" % (imie, nazwisko, ulica, nr_budynku, nr_lokalu,
                                                                   kod_pocztowy, miasto))
+
+
+def showVisitL(self, login, haslo):
+    self.login = login
+    self.haslo = haslo
+
+    self.c.execute("SELECT * from lekarz_wizyta where login=%s and haslo=%s", (login, haslo))
+
+    print("| %2s | %8s | %10s | %12s | %23s   " % ("ID", "Imię", "Nazwisko", "Data wizyty", "Choroba"))
+
+    dane = self.c.fetchall()
+
+    for row in dane:
+        id = row[0]
+        imie = row[5]
+        nazwisko = row[6]
+        data_wizyty = row[7]
+        choroba = row[8]
+
+        print("| %2s | %8s | %10s | %12s | %23s " % (id, imie, nazwisko, data_wizyty, choroba))

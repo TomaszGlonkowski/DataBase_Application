@@ -1,4 +1,6 @@
 from DataBase_Application.patients import *
+from DataBase_Application.doctors import *
+import pymysql
 
 class DBConnect:
 
@@ -16,7 +18,6 @@ class DBConnect:
             self.conn.commit()
         else:
             self.conn.rollback()
-
 
 
     def menu(self):
@@ -50,6 +51,8 @@ class DBConnect:
                         dec = input("Menu [P - pokaż dane osobowe, W - wizyty, D - odwołaj wizytę, Q - wyjdź] ").upper()
                         if dec == "P":
                             showPersonalDataL(self, login, haslo)
+                        elif dec == "W":
+                            showVisitL(self, login, haslo)
                         elif dec == "Q":
                             break
             else:

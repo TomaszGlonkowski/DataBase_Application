@@ -53,6 +53,8 @@ class DBConnect:
                             showPersonalDataL(self, login, haslo)
                         elif dec == "W":
                             showVisitL(self, login, haslo)
+                        elif dec == "D":
+                            deleteVisitL(self, login, haslo)
                         elif dec == "Q":
                             break
             else:

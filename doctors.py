@@ -27,7 +27,7 @@ def showVisitL(self, login, haslo):
 
     self.c.execute("SELECT * from lekarz_wizyta where login=%s and haslo=%s", (login, haslo))
 
-    print("| %2s | %8s | %10s | %12s | %23s   " % ("ID", "Imię", "Nazwisko", "Data wizyty", "Choroba"))
+    print("| %4s | %8s | %10s | %12s | %23s   " % ("ID", "Imię", "Nazwisko", "Data wizyty", "Choroba"))
 
     dane = self.c.fetchall()
 
@@ -39,3 +39,16 @@ def showVisitL(self, login, haslo):
         choroba = row[8]
 
         print("| %2s | %8s | %10s | %12s | %23s " % (id, imie, nazwisko, data_wizyty, choroba))
+
+
+def deleteVisitL(self, login, haslo):
+    self.login = login
+    self.haslo = haslo
+
+    showVisitL(self, login, haslo)
+
+    num = input("Podaj ID wizyty do odwołania: ")
+
+    self.c.execute("DELETE from wizyta where id_wizyta=%s", num)
+
+    self.transaction()

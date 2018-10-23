@@ -21,6 +21,7 @@ class DBConnect:
 
 
     def menu(self):
+        global id, id_login, id_adres
         log = input("Z - Zarejestruj się, L - logowanie\n")
         if log == "L":
             login = input("Podaj login: ")
@@ -59,6 +60,72 @@ class DBConnect:
                             break
             else:
                 print("Błędny login lub hasło!")
+
+        elif log == "Z":
+
+            login = input("Podaj login: ")
+            haslo = input("Podaj hasło: ")
+            id_role = 2
+            self.c.execute("INSERT INTO hospital.login (id_role, login , haslo) VALUES (%s, %s , %s)",
+                           (id_role, login, haslo))
+
+            self.c.execute("SELECT * from login where login=%s and haslo=%s", (login, haslo))
+
+            dane = self.c.fetchall()
+
+            for row in dane:
+                id_login = row[0]
+
+            imie = input("Podaj imię: ")
+            nazwisko = input("Podaj nazwisko: ")
+            pesel = input("Podaj pesel: ")
+            data_urodzenia = input("Podaj datę urodzenia(format rrrr-mm-dd): ")
+
+
+            self.c.execute("SELECT * FROM plec")
+            print("| %2s | %10s    " % ("ID", "Płeć"))
+
+            dane = self.c.fetchall()
+
+            for row in dane:
+                id = row[0]
+                plec = row[1]
+
+                print("| %2s | %10s    " % (id, plec))
+
+            plec = input("Podaj plec: (ID): ")
+
+
+            ulica = input("Podaj ulicę: ")
+            nr_budynku = input("Podaj nr budynku: ")
+            nr_lokalu = input("Podaj nr lokalu: ")
+            miasto = input("Podaj miasto: ")
+            kod_pocztowy = input("Podaj kod pocztowy: ")
+            wojewodztwo = input("Podaj wojewodztwo: ")
+            kraj = input("Podaj kraj urodzenia: ")
+            telefon = input("Podaj telefon kontaktowy: ")
+            email = input("Podaj email: ")
+
+            self.c.execute("INSERT INTO dane_teleadresowe (ulica, nr_budynku, nr_lokalu, miasto, kod_pocztowy, "
+                           "wojewodztwo, kraj, telefon, email) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                           (ulica, nr_budynku, nr_lokalu, miasto, kod_pocztowy, wojewodztwo, kraj, telefon, email))
+
+            self.c.execute("SELECT * FROM dane_teleadresowe where email=%s", (email))
+
+            dane = self.c.fetchall()
+
+            for row in dane:
+                id_adres = row[0]
+
+            self.c.execute("INSERT INTO pacjent (id_login, id_adres, id_plec, Imie, Nazwisko, Pesel, Data_urodzenia) "
+                           "VALUES (%s ,%s ,%s, %s, %s , %s, %s)",
+                           (id_login, id_adres, plec, imie, nazwisko, pesel, data_urodzenia))
+
+            self.transaction()
+
+            print("Pomyślnie przeszedłeś rejestrację - spróbuj się zalogować\n")
+
+            self.menu()
 
 
 obj = DBConnect()

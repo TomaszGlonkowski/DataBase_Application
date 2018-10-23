@@ -44,3 +44,16 @@ class DBConnect:
                             deleteVisit(self, login, haslo)
                         elif dec == "Q":
                             break
+                else:
+                    print("Zalogowałeś się do systemu! (Lekarz)")
+                    while True:
+                        dec = input("Menu [P - pokaż dane osobowe, W - wizyty, D - odwołaj wizytę, Q - wyjdź] ").upper()
+                        if dec == "P":
+                            showPersonalDataL(self, login, haslo)
+                        elif dec == "Q":
+                            break
+            else:
+                print("Błędny login lub hasło!")
+
+
+obj = DBConnect()

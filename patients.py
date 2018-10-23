@@ -19,3 +19,19 @@ def showPersonalData(self, login, haslo):
 
         print("| %8s | %8s | %8s | %10s | %9s | %12s | %10s |" % (imie, nazwisko, ulica, nr_budynku, nr_lokalu,
                                                                   kod_pocztowy, miasto))
+
+
+def showDoctors(self):
+    self.c.execute("SELECT * from lekarz_specjalizacja_2")
+
+    print("| %8s | %10s | %12s | %13s" % ("Numer", "Imię", "Nazwisko", "Specjalizacja"))
+
+    dane = self.c.fetchall()
+
+    for row in dane:
+        id = row[0]
+        imie = row[1]
+        nazwisko = row[2]
+        specjalizacja = row[3]
+
+        print("| %8s | %10s | %12s | %13s" % (id, imie, nazwisko, specjalizacja))

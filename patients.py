@@ -162,7 +162,7 @@ def deleteVisit(self, login, haslo):
 
         print("| %2s | %12s | %23s | %15s " % (id, data, choroba, imie_l + " " + nazwisko_l))
 
-    num = input("Podaj ID wizyty do usunięcia: ")
+    num = input("Podaj ID wizyty do odwołania: ")
 
     self.c.execute("DELETE from wizyta where id_wizyta=%s", num)
 

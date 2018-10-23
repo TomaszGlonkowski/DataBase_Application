@@ -140,3 +140,30 @@ def addVisit(self, login, haslo):
                    , (id, lekarz, choroba, data))
 
     self.transaction()
+
+
+def deleteVisit(self, login, haslo):
+    self.login = login
+    self.haslo = haslo
+
+    self.c.execute("select * from deleteWizyta where login=%s and haslo=%s", (login, haslo))
+
+    print("| %2s | %12s | %23s | %15s " % ("ID", "Data wizyty", "Choroba",
+                                           "Lekarz"))
+
+    dane = self.c.fetchall()
+
+    for row in dane:
+        id = row[3]
+        data = row[6]
+        choroba = row[7]
+        imie_l = row[8]
+        nazwisko_l = row[9]
+
+        print("| %2s | %12s | %23s | %15s " % (id, data, choroba, imie_l + " " + nazwisko_l))
+
+    num = input("Podaj ID wizyty do usunięcia: ")
+
+    self.c.execute("DELETE from wizyta where id_wizyta=%s", num)
+
+    self.transaction()

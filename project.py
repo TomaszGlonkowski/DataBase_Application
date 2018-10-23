@@ -81,7 +81,6 @@ class DBConnect:
             pesel = input("Podaj pesel: ")
             data_urodzenia = input("Podaj datę urodzenia(format rrrr-mm-dd): ")
 
-
             self.c.execute("SELECT * FROM plec")
             print("| %2s | %10s    " % ("ID", "Płeć"))
 
@@ -94,7 +93,6 @@ class DBConnect:
                 print("| %2s | %10s    " % (id, plec))
 
             plec = input("Podaj plec: (ID): ")
-
 
             ulica = input("Podaj ulicę: ")
             nr_budynku = input("Podaj nr budynku: ")
@@ -123,7 +121,7 @@ class DBConnect:
 
             self.transaction()
 
-            print("Pomyślnie przeszedłeś rejestrację - spróbuj się zalogować\n")
+            print("Pomyślnie przeszedłeś rejestrację - spróbuj się zalogować.\n")
 
             self.menu()
 

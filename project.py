@@ -8,6 +8,17 @@ class DBConnect:
         print("Nastąpiło połączenie do bazy danych.")
         self.menu()
 
+    def transaction(self):
+
+        dec = input("Czy na pewno chcesz wprowadzić zmiany? T/N ").upper()
+
+        if dec == "T":
+            self.conn.commit()
+        else:
+            self.conn.rollback()
+
+
+
     def menu(self):
         log = input("Z - Zarejestruj się, L - logowanie\n")
         if log == "L":

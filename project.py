@@ -1,3 +1,5 @@
+from DataBase_Application.patients import *
+
 class DBConnect:
 
     def __init__(self):

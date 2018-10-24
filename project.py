@@ -1,5 +1,6 @@
 from DataBase_Application.patients import *
 from DataBase_Application.doctors import *
+from DataBase_Application.admin import *
 import pymysql
 
 class DBConnect:
@@ -61,8 +62,12 @@ class DBConnect:
                 else:
                     print("Zalogowałeś się do systemu! (Admin)")
                     while True:
-                        dec = input("Menu [L - dodaj lekarza, S - dodaj spechalizację, C - dodaj chorobę, "
+                        dec = input("Menu [L - dodaj lekarza, S - dodaj specjalizację, C - dodaj chorobę, "
                                     "UL - usuń lekarza, UP - usuń pacjenta")
+
+                        if dec == "S":
+                            addSpecialization(self)
+
 
             else:
                 print("Błędny login lub hasło!")

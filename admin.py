@@ -20,3 +20,28 @@ def addSpecialization(self):
     self.c.execute("INSERT INTO Specjalizacja (nazwa) VALUES (%s)", (nazwa))
 
     self.transaction()
+
+def showDisease(self):
+    self.c.execute("SELECT * FROM CHOROBA order by id_choroba")
+
+    print("| %2s | %23s | %2s" % ("ID", "Choroba", "Opis"))
+
+    dane = self.c.fetchall()
+
+    for row in dane:
+        id = row[0]
+        nazwa = row[1]
+        opis = row[2]
+
+        print("| %2s | %23s | %20s" % (id, nazwa, opis))
+
+def addDisease(self):
+
+    showDisease(self)
+
+    choroba = input("Podaj nazwę nowej choroby: ")
+    opis = input("Podaj opis choroby: ")
+
+    self.c.execute("INSERT INTO Choroba (nazwa_choroby, opis) VALUES (%s, %s)", (choroba, opis))
+
+    self.c.transaction()

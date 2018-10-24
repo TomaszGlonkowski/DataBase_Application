@@ -62,13 +62,17 @@ class DBConnect:
                 else:
                     print("Zalogowałeś się do systemu! (Admin)")
                     while True:
-                        dec = input("Menu [L - dodaj lekarza, PS - pokaż specjalizacje, "
-                                    "S - dodaj specjalizację, PC - pokaż choroby, C - dodaj chorobę, UL - usuń lekarza, UP - usuń pacjenta").upper()
+                        dec = input("\nMenu [L - dodaj lekarza, PS - pokaż specjalizacje, "
+                                    "S - dodaj specjalizację, PC - pokaż choroby, C - dodaj chorobę, UL - usuń lekarza, UP - usuń pacjenta ").upper()
 
                         if dec == "S":
                             addSpecialization(self)
                         elif dec == "PS":
                             showSpecialization(self)
+                        elif dec == "PC":
+                            showDisease(self)
+                        elif dec == "C":
+                            addDisease(self)
 
 
             else:

@@ -61,3 +61,17 @@ def showDoctors(self):
 
         print("| %2s | %10s | %10s" % (id, imie, nazwisko))
 
+def showPatients(self):
+
+    self.c.execute("SELECT id_pacjent, imie, nazwisko from pacjent order by id_pacjent")
+
+    print("| %2s | %10s | %10s" % ("ID", "Imie", "Nazwisko"))
+
+    dane = self.c.fetchall()
+
+    for row in dane:
+        id = row[0]
+        imie = row[1]
+        nazwisko = row[2]
+
+        print("| %2s | %10s | %10s" % (id, imie, nazwisko))

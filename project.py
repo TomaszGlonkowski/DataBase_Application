@@ -76,6 +76,8 @@ class DBConnect:
                             addDisease(self)
                         elif dec == "PL":
                             showDoctors(self)
+                        elif dec == "PP":
+                            showPatients(self)
 
 
             else:

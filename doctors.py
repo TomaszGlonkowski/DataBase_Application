@@ -46,6 +46,7 @@ def showVisitL(self, login, haslo):
         print("Brak zarejestrowanych wizyt!")
 
 
+
 def deleteVisitL(self, login, haslo):
     self.login = login
     self.haslo = haslo

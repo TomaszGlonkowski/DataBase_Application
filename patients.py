@@ -43,21 +43,25 @@ def showVisit(self, login, haslo):
 
     self.c.execute("select * from pacjent_choroba where login=%s and haslo=%s", (login, haslo))
 
-    print("| %8s | %10s | %12s | %23s | %15s " % ("Imię", "Nazwisko", "Data wizyty", "Choroba",
-                                                  "Lekarz"))
-
     dane = self.c.fetchall()
 
-    for row in dane:
-        imie = row[3]
-        nazwisko = row[4]
-        data_wizyty = row[5]
-        choroba = row[6]
-        imie_l = row[7]
-        nazwisko_l = row[8]
+    if len(dane) > 6:
 
-        print("| %8s | %10s | %12s | %23s | %15s" % (imie, nazwisko, data_wizyty, choroba,
-                                                     imie_l + " " + nazwisko_l))
+        print("| %8s | %10s | %12s | %23s | %15s " % ("Imię", "Nazwisko", "Data wizyty", "Choroba",
+                                                      "Lekarz"))
+
+        for row in dane:
+            imie = row[3]
+            nazwisko = row[4]
+            data_wizyty = row[5]
+            choroba = row[6]
+            imie_l = row[7]
+            nazwisko_l = row[8]
+
+            print("| %8s | %10s | %12s | %23s | %15s" % (imie, nazwisko, data_wizyty, choroba,
+                                                         imie_l + " " + nazwisko_l))
+    else:
+        print("Brak wizyt!\n")
 
 def showDisease(self):
     self.c.execute("select id_choroba, nazwa_choroby from choroba order by id_choroba")

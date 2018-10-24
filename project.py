@@ -60,6 +60,7 @@ class DBConnect:
                             break
             else:
                 print("Błędny login lub hasło!")
+                self.menu()
 
         elif log == "Z":
 

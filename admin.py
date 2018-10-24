@@ -45,3 +45,19 @@ def addDisease(self):
     self.c.execute("INSERT INTO Choroba (nazwa_choroby, opis) VALUES (%s, %s)", (choroba, opis))
 
     self.c.transaction()
+
+def showDoctors(self):
+
+    self.c.execute("SELECT id_lekarz, imie, nazwisko from lekarz order by id_lekarz")
+
+    print("| %2s | %10s | %10s" % ("ID", "Imie", "Nazwisko"))
+
+    dane = self.c.fetchall()
+
+    for row in dane:
+        id = row[0]
+        imie = row[1]
+        nazwisko = row[2]
+
+        print("| %2s | %10s | %10s" % (id, imie, nazwisko))
+

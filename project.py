@@ -46,7 +46,7 @@ class DBConnect:
                             deleteVisit(self, login, haslo)
                         elif dec == "Q":
                             break
-                else:
+                elif dane[0][1] == 1:
                     print("Zalogowałeś się do systemu! (Lekarz)")
                     while True:
                         dec = input("Menu [P - pokaż dane osobowe, W - wizyty, D - odwołaj wizytę, Q - wyjdź] ").upper()
@@ -58,6 +58,12 @@ class DBConnect:
                             deleteVisitL(self, login, haslo)
                         elif dec == "Q":
                             break
+                else:
+                    print("Zalogowałeś się do systemu! (Admin)")
+                    while True:
+                        dec = input("Menu [L - dodaj lekarza, S - dodaj spechalizację, C - dodaj chorobę, "
+                                    "UL - usuń lekarza, UP - usuń pacjenta")
+
             else:
                 print("Błędny login lub hasło!")
 

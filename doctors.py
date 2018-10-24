@@ -27,18 +27,23 @@ def showVisitL(self, login, haslo):
 
     self.c.execute("SELECT * from lekarz_wizyta where login=%s and haslo=%s", (login, haslo))
 
-    print("| %4s | %8s | %10s | %12s | %23s   " % ("ID", "Imię", "Nazwisko", "Data wizyty", "Choroba"))
-
     dane = self.c.fetchall()
 
-    for row in dane:
-        id = row[0]
-        imie = row[5]
-        nazwisko = row[6]
-        data_wizyty = row[7]
-        choroba = row[8]
+    if len(dane) > 4:
 
-        print("| %2s | %8s | %10s | %12s | %23s " % (id, imie, nazwisko, data_wizyty, choroba))
+        print("| %4s | %8s | %10s | %12s | %23s   " % ("ID", "Imię", "Nazwisko", "Data wizyty", "Choroba"))
+
+        for row in dane:
+            id = row[0]
+            imie = row[5]
+            nazwisko = row[6]
+            data_wizyty = row[7]
+            choroba = row[8]
+
+            print("| %2s | %8s | %10s | %12s | %23s " % (id, imie, nazwisko, data_wizyty, choroba))
+
+    else:
+        print("Brak zarejestrowanych wizyt!")
 
 
 def deleteVisitL(self, login, haslo):

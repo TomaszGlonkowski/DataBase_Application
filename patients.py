@@ -4,7 +4,7 @@ def showPersonalData(self, login, haslo):
 
     self.c.execute("SELECT * FROM adres_pacjent where login=%s and haslo=%s", (login, haslo))
 
-    print("| %8s | %8s | %9s | %5s | %5s | %8s | %10s |" % ("Imię", "Nazwisko", "Ulica", "Nr budynku",
+    print("| %8s | %12s | %21s | %5s | %5s | %8s | %10s |" % ("Imię", "Nazwisko", "Ulica", "Nr budynku",
                                                             "Nr lokalu", "Kod pocztowy", "Miasto"))
     dane = self.c.fetchall()
 
@@ -17,7 +17,7 @@ def showPersonalData(self, login, haslo):
         kod_pocztowy = row[7]
         miasto = row[8]
 
-        print("| %8s | %8s | %8s | %10s | %9s | %12s | %10s |" % (imie, nazwisko, ulica, nr_budynku, nr_lokalu,
+        print("| %8s | %12s | %21s | %10s | %9s | %12s | %10s |" % (imie, nazwisko, ulica, nr_budynku, nr_lokalu,
                                                                   kod_pocztowy, miasto))
 
 
@@ -45,9 +45,9 @@ def showVisit(self, login, haslo):
 
     dane = self.c.fetchall()
 
-    if len(dane) > 6:
+    if dane[0][5] != None:
 
-        print("| %8s | %10s | %12s | %23s | %15s " % ("Imię", "Nazwisko", "Data wizyty", "Choroba",
+        print("| %8s | %12s | %12s | %23s | %15s " % ("Imię", "Nazwisko", "Data wizyty", "Choroba",
                                                       "Lekarz"))
 
         for row in dane:
@@ -58,10 +58,12 @@ def showVisit(self, login, haslo):
             imie_l = row[7]
             nazwisko_l = row[8]
 
-            print("| %8s | %10s | %12s | %23s | %15s" % (imie, nazwisko, data_wizyty, choroba,
+            print("| %8s | %12s | %12s | %23s | %15s" % (imie, nazwisko, data_wizyty, choroba,
                                                          imie_l + " " + nazwisko_l))
     else:
         print("Brak wizyt!\n")
+
+
 
 def showDisease(self):
     self.c.execute("select id_choroba, nazwa_choroby from choroba order by id_choroba")

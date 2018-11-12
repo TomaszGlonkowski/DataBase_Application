@@ -95,5 +95,3 @@ def deleteDoctors(self):
     self.c.execute("DELETE FROM lekarz where id_lekarz=%s", (id))
 
     self.transaction()
-
-    

@@ -1,5 +1,6 @@
 from DataBase_Application.patients import *
 from DataBase_Application.doctors import *
+from DataBase_Application.admin import *
 import pymysql
 
 class DBConnect:
@@ -46,7 +47,7 @@ class DBConnect:
                             deleteVisit(self, login, haslo)
                         elif dec == "Q":
                             break
-                else:
+                elif dane[0][1] == 1:
                     print("Zalogowałeś się do systemu! (Lekarz)")
                     while True:
                         dec = input("Menu [P - pokaż dane osobowe, W - wizyty, D - odwołaj wizytę, Q - wyjdź] ").upper()
@@ -58,8 +59,36 @@ class DBConnect:
                             deleteVisitL(self, login, haslo)
                         elif dec == "Q":
                             break
+                else:
+                    print("Zalogowałeś się do systemu! (Admin)")
+                    while True:
+                        dec = input("\nMenu [PL - pokaż lekarzy, UL - usuń lekarza, PS - pokaż specjalizacje, "
+                                    "DS - dodaj specjalizację, PC - pokaż choroby, DC - dodaj chorobę, "
+                                    "PP - pokaż pacjentów, UP - usuń pacjenta Q - wyjdź] ").upper()
+
+                        if dec == "DS":
+                            addSpecialization(self)
+                        elif dec == "PS":
+                            showSpecialization(self)
+                        elif dec == "PC":
+                            showDisease(self)
+                        elif dec == "C":
+                            addDisease(self)
+                        elif dec == "PL":
+                            showDoctors(self)
+                        elif dec == "PP":
+                            showPatients(self)
+                        elif dec == "UP":
+                            deletePatients(self)
+                        elif dec == "UL":
+                            deleteDoctors(self);
+                        elif dec == "Q":
+                            break
+
+
             else:
                 print("Błędny login lub hasło!")
+                self.menu()
 
         elif log == "Z":
 

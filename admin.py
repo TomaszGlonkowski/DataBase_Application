@@ -46,11 +46,14 @@ def addDisease(self):
 
     self.transaction()
 
+
 def showDoctors(self):
 
     self.c.execute("SELECT id_lekarz, imie, nazwisko from lekarz order by id_lekarz")
 
+
     print("| %2s | %10s | %11s" % ("ID", "Imie", "Nazwisko"))
+
 
     dane = self.c.fetchall()
 
@@ -60,6 +63,7 @@ def showDoctors(self):
         nazwisko = row[2]
 
         print("| %2s | %10s | %11s" % (id, imie, nazwisko))
+
 
 def showPatients(self):
 
@@ -73,6 +77,7 @@ def showPatients(self):
         id = row[0]
         imie = row[1]
         nazwisko = row[2]
+
 
         print("| %2s | %10s | %10s" % (id, imie, nazwisko))
 
@@ -95,3 +100,4 @@ def deleteDoctors(self):
     self.c.execute("DELETE FROM lekarz where id_lekarz=%s", (id))
 
     self.transaction()
+

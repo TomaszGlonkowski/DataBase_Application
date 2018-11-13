@@ -23,7 +23,7 @@ class DBConnect:
 
     def menu(self):
         global id, id_login, id_adres, id_lekarz
-        log = input("Z - Zarejestruj się, L - logowanie\n")
+        log = input("Z - Zarejestruj się, L - logowanie\n").upper()
         if log == "L":
             login = input("Podaj login: ")
             haslo = input("Podaj hasło: ")
@@ -76,7 +76,7 @@ class DBConnect:
                         elif dec == "DC":
                             addDisease(self)
                         elif dec == "PL":
-                            showDoctors(self)
+                            showDoctors_a(self)
                         elif dec == "PP":
                             showPatients(self)
                         elif dec == "UP":
@@ -93,7 +93,7 @@ class DBConnect:
         elif log == "Z":
             # start rejestracji nowego użytkownika
 
-            message = input("Rejestrujesz się jako lekarz czy pacjent? L/P ")
+            message = input("Rejestrujesz się jako lekarz czy pacjent? L/P ").upper()
             login = input("Podaj login: ")
             haslo = input("Podaj hasło: ")
 
@@ -251,8 +251,8 @@ class DBConnect:
                 print("Pomyślnie przeszedłeś rejestrację - spróbuj się zalogować.\n")
                 self.menu()
             else:
-                print("Rozpocznij proces rejestracji ponownie!!\n")
                 self.conn.rollback()
+                print("Rozpocznij proces rejestracji ponownie!!\n")
                 self.menu()
 
 

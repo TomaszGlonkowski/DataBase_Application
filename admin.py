@@ -47,7 +47,7 @@ def addDisease(self):
     self.transaction()
 
 
-def showDoctors(self):
+def showDoctors_a(self):
 
     self.c.execute("SELECT id_lekarz, imie, nazwisko from lekarz order by id_lekarz")
 

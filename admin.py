@@ -93,7 +93,7 @@ def deletePatients(self):
 
 def deleteDoctors(self):
 
-    showDoctors(self)
+    showDoctors_a(self)
 
     id = input("Wybierz id do usunięcią: ")
 

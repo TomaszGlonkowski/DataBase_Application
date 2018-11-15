@@ -103,3 +103,18 @@ FROM
     choroba AS c ON w.id_choroba = c.id_choroba
         LEFT JOIN
     pacjent AS p ON p.id_pacjent = w.id_pacjent;
+
+# pobiera id pacjenta
+create or replace view id_pacjent as
+select l.login, l.haslo, p.id_pacjent, p.imie, p.nazwisko from login as l  join pacjent as p on l.id_login = p.id_login;
+
+#pobiera wizyty pacjenta
+create or replace view deleteWizyta as
+SELECT 
+    p.id_pacjent, l.login, l.haslo, w.id_wizyta, p.imie, p.nazwisko, w.data_wizyty, c.nazwa_choroby as choroba, le.imie as imie_lekarza, le.nazwisko as nazwisko_lekarza 
+FROM
+    pacjent AS p
+        LEFT JOIN
+    wizyta AS w ON p.id_pacjent = w.id_pacjent
+        LEFT JOIN
+    choroba AS c ON w.id_choroba = c.id_choroba left join login as l on l.id_login = p.id_login left join lekarz as le on le.id_lekarz = w.id_lekarz;

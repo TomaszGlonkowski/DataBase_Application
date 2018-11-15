@@ -53,8 +53,14 @@ def deleteVisitL(self, login, haslo):
 
     showVisitL(self, login, haslo)
 
-    num = input("Podaj ID wizyty do odwołania: ")
+    self.c.execute("SELECT * from lekarz_wizyta where login=%s and haslo=%s", (login, haslo))
 
-    self.c.execute("DELETE from wizyta where id_wizyta=%s", num)
+    dane = self.c.fetchall()
 
-    self.transaction()
+    if dane[0][0] != None:
+
+        num = input("Podaj ID wizyty do odwołania: ")
+
+        self.c.execute("DELETE from wizyta where id_wizyta=%s", num)
+
+        self.transaction()
